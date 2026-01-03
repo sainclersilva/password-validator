@@ -109,14 +109,6 @@ O endpoint `/openapi.json` é construído dinamicamente. Abaixo está a especifi
  - A verificação de caracteres repetidos é feita com `password.toSet().size == password.length`, o que garante que todos os caracteres sejam distintos.
  - Testes automatizados cobrem os casos positivos/negativos e incluem um teste de integração que usa o servidor em memória.
 
-## Próximos passos sugeridos
-
- - Integrar um gerador OpenAPI mais rico (ex.: `com.papsign:ktor-openapi-generator`) para gerar docs a partir de rotas e DTOs automaticamente — eu posso integrar essa biblioteca se desejar.
- - Adicionar `launch.json` para depurar no VS Code.
- - Publicar um pequeno container Docker com a aplicação.
-
-Quer que eu adicione algum desses itens agora (por exemplo, integração com `ktor-openapi-generator`)?
-
 ## Example responses (success & failure)
 
 Exemplo de resposta válida (HTTP 200):
@@ -277,7 +269,7 @@ Expected JSON (pretty-printed):
 - Dependency Inversion: módulos de alto nível dependem de abstrações, não de implementações.
 
 **Clean Code**
-- Código organizado por responsabilidade: `App.kt` (configuração e rotas), `validator/PasswordValidator.kt` (contrato e implementação), `openapi/OpenApiGenerator.kt` (geração de spec). Nomes claros e funções pequenas.
+- Código organizado por responsabilidade: `App.kt` (configuração e rotas), `validator/PasswordValidator.kt` (contrato e implementação), `openapi/OpenApiGenerator.kt` (geração de spec). Nomes claros e funções pequenas.	
 
 **SOLID**
 - Single Responsibility: cada arquivo tem responsabilidade única (validação, geração OpenAPI, configuração do servidor).
@@ -297,4 +289,3 @@ Expected JSON (pretty-printed):
 - Health endpoint (`GET /health`) permite load balancers e orquestradores verificarem se a instância está UP.
 - Logs e tratamento de erros tornam mais fácil detectar e reiniciar instâncias problemáticas.
 
-Se quiser, eu posso adicionar camadas extras de resiliência (ex.: circuit-breaker via `resilience4j`, retry/backoff, timeouts específicos) e integração com métricas (Prometheus) e tracing (OpenTelemetry).
